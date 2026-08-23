@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ElementX — Engineering Periodic Table</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="app-shell">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">⚛</div>
+        <div>
+          <h1>Element<span>X</span></h1>
+          <p>Engineering Intelligence</p>
+        </div>
+      </div>
+
+      <nav>
+        <button class="nav-item active" data-section="dashboard">
+          <span>▦</span> Dashboard
+        </button>
+
+        <button class="nav-item" data-section="finder">
+          <span>⌕</span> Element Finder
+        </button>
+
+        <button class="nav-item" data-section="compare">
+          <span>⇄</span> Compare Materials
+        </button>
+
+        <button class="nav-item" data-section="compound">
+          <span>⚗</span> Compound Builder
+        </button>
+
+        <button class="nav-item" data-section="reaction">
+          <span>⚡</span> Reaction Predictor
+        </button>
+
+        <button class="nav-item" data-section="electron">
+          <span>◎</span> Electron Visualizer
+        </button>
+
+        <button class="nav-item" data-section="industry">
+          <span>⌂</span> Industry Uses
+        </button>
+
+        <button class="nav-item" data-section="quiz">
+          <span>?</span> Quiz Mode
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="status-card">
+          <div class="status-dot"></div>
+          <div>
+            <strong>System Ready</strong>
+            <small>Element database loaded</small>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div>
+          <div class="breadcrumb">ENGINEERING MATERIALS / <span id="currentPage">DASHBOARD</span></div>
+          <h2 id="pageTitle">Periodic Intelligence</h2>
+        </div>
+
+        <div class="top-actions">
+          <div class="search-box">
+            <span>⌕</span>
+            <input id="globalSearch" type="text" placeholder="Search element..." />
+          </div>
+          <button class="icon-btn" id="themeBtn">☼</button>
+        </div>
+      </header>
+
+      <!-- DASHBOARD -->
+      <section class="page active" id="dashboard">
+
+        <div class="hero">
+          <div>
+            <span class="eyebrow">ENGINEERING ELEMENT DATABASE</span>
+            <h3>Explore the elements.<br><span>Engineer better solutions.</span></h3>
+            <p>
+              Analyze chemical elements through engineering properties,
+              industrial applications, reactions and interactive visualizations.
+            </p>
+            <button class="primary-btn" data-goto="finder">
+              Start Exploring →
+            </button>
+          </div>
+
+          <div class="hero-orbit">
+            <div class="orbit orbit-1"></div>
+            <div class="orbit orbit-2"></div>
+            <div class="orbit-core">Xe</div>
+            <div class="particle p1">+</div>
+            <div class="particle p2">−</div>
+            <div class="particle p3">+</div>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-icon">⚛</span>
+            <div>
+              <small>Elements</small>
+              <strong>118</strong>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <span class="stat-icon">◈</span>
+            <div>
+              <small>Engineering Data</small>
+              <strong>25+</strong>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <span class="stat-icon">⌂</span>
+            <div>
+              <small>Industries</small>
+              <strong>12</strong>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <span class="stat-icon">⚗</span>
+            <div>
+              <small>Compounds</small>
+              <strong>500+</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">INTERACTIVE TABLE</span>
+            <h3>Periodic Table</h3>
+          </div>
+
+          <div class="legend">
+            <span><i class="metal"></i> Metals</span>
+            <span><i class="nonmetal"></i> Nonmetals</span>
+            <span><i class="noble"></i> Noble Gases</span>
+          </div>
+        </div>
+
+        <div class="periodic-wrapper">
+          <div id="periodicTable" class="periodic-table"></div>
+        </div>
+
+      </section>
+
+      <!-- FINDER -->
+      <section class="page" id="finder">
+        <div class="tool-header">
+          <span class="eyebrow">MATERIAL SELECTION</span>
+          <h3>Element Finder</h3>
+          <p>Describe what you need and find elements that match your engineering requirements.</p>
+        </div>
+
+        <div class="finder-box">
+          <label>What are you looking for?</label>
+          <textarea id="finderInput" placeholder="Example: I need a lightweight metal with high electrical conductivity..."></textarea>
+
+          <div class="requirement-chips">
+            <button data-req="lightweight">Lightweight</button>
+            <button data-req="conductive">Highly Conductive</button>
+            <button data-req="strong">High Strength</button>
+            <button data-req="heat">High Melting Point</button>
+            <button data-req="corrosion">Corrosion Resistant</button>
+          </div>
+
+          <button class="primary-btn" id="findElements">Find Materials →</button>
+        </div>
+
+        <div id="finderResults" class="result-grid"></div>
+      </section>
+
+      <!-- COMPARE -->
+      <section class="page" id="compare">
+        <div class="tool-header">
+          <span class="eyebrow">ENGINEERING ANALYSIS</span>
+          <h3>Material Comparison</h3>
+          <p>Compare engineering properties side by side.</p>
+        </div>
+
+        <div class="compare-select">
+          <select id="compare1"></select>
+          <select id="compare2"></select>
+          <select id="compare3"></select>
+          <button class="primary-btn" id="compareBtn">Compare</button>
+        </div>
+
+        <div id="comparisonTable" class="comparison-container"></div>
+      </section>
+
+      <!-- COMPOUND -->
+      <section class="page" id="compound">
+        <div class="tool-header">
+          <span class="eyebrow">CHEMICAL DESIGN</span>
+          <h3>Compound Builder</h3>
+          <p>Select elements to explore common compounds and their applications.</p>
+        </div>
+
+        <div class="compound-builder">
+          <div class="element-select-card">
+            <label>Element A</label>
+            <select id="compoundA"></select>
+          </div>
+
+          <div class="plus">+</div>
+
+          <div class="element-select-card">
+            <label>Element B</label>
+            <select id="compoundB"></select>
+          </div>
+
+          <button class="primary-btn" id="buildCompound">Build Compound</button>
+        </div>
+
+        <div id="compoundResult" class="compound-result"></div>
+      </section>
+
+      <!-- REACTION -->
+      <section class="page" id="reaction">
+        <div class="tool-header">
+          <span class="eyebrow">CHEMICAL SIMULATION</span>
+          <h3>Reaction Predictor</h3>
+          <p>Explore likely interactions between selected elements.</p>
+        </div>
+
+        <div class="reaction-box">
+          <select id="reactionA"></select>
+          <div class="reaction-symbol">→</div>
+          <select id="reactionB"></select>
+          <button class="primary-btn" id="predictReaction">Predict Reaction</button>
+        </div>
+
+        <div id="reactionResult"></div>
+      </section>
+
+      <!-- ELECTRON -->
+      <section class="page" id="electron">
+        <div class="tool-header">
+          <span class="eyebrow">ATOMIC STRUCTURE</span>
+          <h3>Electron Configuration Visualizer</h3>
+          <p>Explore electron shells and atomic structure.</p>
+        </div>
+
+        <div class="electron-controls">
+          <select id="electronSelect"></select>
+          <button class="primary-btn" id="visualizeElectron">Visualize</button>
+        </div>
+
+        <div class="electron-panel">
+          <div id="atomVisual" class="atom-visual"></div>
+
+          <div class="electron-info">
+            <span class="eyebrow">ELECTRON CONFIGURATION</span>
+            <h3 id="electronElement">Carbon</h3>
+            <div id="configuration" class="configuration"></div>
+
+            <div class="electron-stats">
+              <div>
+                <small>Atomic Number</small>
+                <strong id="atomicNumber">6</strong>
+              </div>
+              <div>
+                <small>Valence Electrons</small>
+                <strong id="valenceElectrons">4</strong>
+              </div>
+              <div>
+                <small>Period</small>
+                <strong id="periodNumber">2</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INDUSTRY -->
+      <section class="page" id="industry">
+        <div class="tool-header">
+          <span class="eyebrow">REAL WORLD APPLICATIONS</span>
+          <h3>Industry Use Explorer</h3>
+          <p>Discover how elements contribute to modern engineering.</p>
+        </div>
+
+        <div class="industry-grid" id="industryGrid"></div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="page" id="quiz">
+        <div class="tool-header">
+          <span class="eyebrow">KNOWLEDGE CHECK</span>
+          <h3>Element Quiz</h3>
+          <p>Test your knowledge of chemistry and engineering materials.</p>
+        </div>
+
+        <div class="quiz-card">
+          <div class="quiz-top">
+            <span id="questionCount">Question 1 / 5</span>
+            <span id="quizScore">Score: 0</span>
+          </div>
+
+          <div class="progress">
+            <div id="quizProgress"></div>
+          </div>
+
+          <h3 id="question"></h3>
+          <div id="answers" class="answers"></div>
+
+          <button class="primary-btn" id="nextQuestion">Next Question →</button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ELEMENT MODAL -->
+  <div class="modal-overlay" id="elementModal">
+    <div class="element-modal">
+      <button class="close-modal" id="closeModal">×</button>
+
+      <div class="modal-symbol" id="modalSymbol">Fe</div>
+
+      <span class="eyebrow" id="modalCategory">TRANSITION METAL</span>
+      <h2 id="modalName">Iron</h2>
+
+      <div class="modal-number" id="modalNumber">26</div>
+
+      <div class="property-grid">
+        <div>
+          <small>Atomic Mass</small>
+          <strong id="modalMass"></strong>
+        </div>
+
+        <div>
+          <small>Density</small>
+          <strong id="modalDensity"></strong>
+        </div>
+
+        <div>
+          <small>Melting Point</small>
+          <strong id="modalMelting"></strong>
+        </div>
+
+        <div>
+          <small>Boiling Point</small>
+          <strong id="modalBoiling"></strong>
+        </div>
+
+        <div>
+          <small>Conductivity</small>
+          <strong id="modalConductivity"></strong>
+        </div>
+
+        <div>
+          <small>Valence</small>
+          <strong id="modalValence"></strong>
+        </div>
+      </div>
+
+      <div class="modal-use">
+        <span class="eyebrow">ENGINEERING APPLICATIONS</span>
+        <p id="modalUse"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
